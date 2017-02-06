@@ -23,6 +23,8 @@ This style guide conforms to IETF's [RFC 2119](http://tools.ietf.org/html/rfc211
 * [Methods](#methods)
 * [Variables](#variables)
 * [Naming](#naming)
+  * [UIKit Properties](#uikit-properties)
+  * [Prefixes](#prefixes)
   * [Categories](#categories)
 * [Comments](#comments)
 * [Init & Dealloc](#init-and-dealloc)
@@ -197,13 +199,13 @@ Long, descriptive method and variable names are good.
 UIButton *buttonSettings;
 ```
 
-**Not**
+**Not:**
 
 ```objc
 UIButton *butSet;
 ```
 
-### UIKit Properties
+### UIKit-Properties
 
 For UIKit-based properties that are bound or unbound to storyboard or NIB controls, the name MUST start with the type of UIKit element. This helps assist editing in code when you don't remember the name of the control, but you can remember what type of control you're looking for. Auto-completion will help you find the proper variable after using the prefix.
 
@@ -213,7 +215,7 @@ For UIKit-based properties that are bound or unbound to storyboard or NIB contro
 UILabel *labelName;
 ```
 
-**Not**
+**Not:**
 
 ```objc
 UILabel *name;
