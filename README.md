@@ -181,7 +181,7 @@ Property definitions SHOULD be used in place of naked instance variables wheneve
 }
 ```
 
-#### Variable Qualifiers
+### Variable Qualifiers
 
 When it comes to the variable qualifiers [introduced with ARC](https://developer.apple.com/library/ios/releasenotes/objectivec/rn-transitioningtoarc/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011226-CH1-SW4), the qualifier (`__strong`, `__weak`, `__unsafe_unretained`, `__autoreleasing`) SHOULD be placed between the asterisks and the variable name, e.g., `NSString * __weak text`. 
 
@@ -202,6 +202,26 @@ UIButton *buttonSettings;
 ```objc
 UIButton *butSet;
 ```
+
+### UIKit Properties
+
+For UIKit-based properties that are bound or unbound to storyboard or NIB controls, the name MUST start with the type of UIKit element. This helps assist editing in code when you don't remember the name of the control, but you can remember what type of control you're looking for. Auto-completion will help you find the proper variable after using the prefix.
+
+**For example:**
+
+```objc
+UILabel *labelName;
+```
+
+**Not**
+
+```objc
+UILabel *name;
+// or
+UILabel *nameLabel;
+```
+
+### Prefixes
 
 A three letter prefix (e.g., `ADC`) MUST be used for class names and constants. This is to avoid conflict with other libraries and application code. Constants MUST be camel-case with all words capitalized and prefixed by the related class name for clarity. A two letter prefix (e.g., `NS`) is [reserved for use by Apple](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/DefiningClasses/DefiningClasses.html#//apple_ref/doc/uid/TP40011210-CH3-SW12).
 
