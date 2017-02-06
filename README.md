@@ -196,21 +196,21 @@ Long, descriptive method and variable names are good.
 **For example:**
 
 ```objc
-UIButton *settingsButton;
+UIButton *buttonSettings;
 ```
 
 **Not**
 
 ```objc
-UIButton *setBut;
+UIButton *butSet;
 ```
 
-A three letter prefix (e.g., `NYT`) MUST be used for class names and constants, however MAY be omitted for Core Data entity names. Constants MUST be camel-case with all words capitalized and prefixed by the related class name for clarity. A two letter prefix (e.g., `NS`) is [reserved for use by Apple](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/DefiningClasses/DefiningClasses.html#//apple_ref/doc/uid/TP40011210-CH3-SW12).
+A three letter prefix (e.g., `ADC`) MUST be used for class names and constants. This is to avoid conflict with other libraries and application code. Constants MUST be camel-case with all words capitalized and prefixed by the related class name for clarity. A two letter prefix (e.g., `NS`) is [reserved for use by Apple](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/DefiningClasses/DefiningClasses.html#//apple_ref/doc/uid/TP40011210-CH3-SW12).
 
 **For example:**
 
 ```objc
-static const NSTimeInterval NYTArticleViewControllerNavigationFadeAnimationDuration = 0.3;
+static const NSTimeInterval ADCFadeAnimationDuration = 0.3;
 ```
 
 **Not:**
@@ -219,9 +219,9 @@ static const NSTimeInterval NYTArticleViewControllerNavigationFadeAnimationDurat
 static const NSTimeInterval fadetime = 1.7;
 ```
 
-Properties and local variables MUST be camel-case with the leading word being lowercase.
+Properties and local variables MUST be lowerCamelCase.
 
-Instance variables MUST be camel-case with the leading word being lowercase, and MUST be prefixed with an underscore. This is consistent with instance variables synthesized automatically by LLVM. **If LLVM can synthesize the variable automatically, then let it.**
+Instance variables MUST be lowerCamelCase, and MUST be prefixed with an underscore. This is consistent with instance variables synthesized automatically by LLVM. **If LLVM can synthesize the variable automatically, then let it.**
 
 **For example:**
 
@@ -237,20 +237,22 @@ id varnm;
 
 ### Categories
 
-Categories are RECOMMENDED to concisely segment functionality and should be named to describe that functionality.
+Categories are NOT RECOMMENDED for SDK development. The only categories that are acceptable are those contained within the same implementation file where they are used, i.e. private properties within anonymous category. This is recommended because public categories require applications to link with -ObjC flag.
+
+If used, concisely segment functionality and name to describe that functionality.
 
 **For example:**
 
 ```objc
-@interface UIViewController (NYTMediaPlaying)
+@interface UIViewController (ADCMediaPlaying)
 @interface NSString (NSStringEncodingDetection)
 ```
 
 **Not:**
 
 ```objc
-@interface NYTAdvertisement (private)
-@interface NSString (NYTAdditions)
+@interface ADCAdvertisement (private)
+@interface NSString (ADCAdditions)
 ```
 
 Methods and properties added in categories MUST be named with an app- or organization-specific prefix. This avoids unintentionally overriding an existing method, and it reduces the chance of two categories from different libraries adding a method of the same name. (The Objective-C runtime doesn’t specify which method will be called in the latter case, which can lead to unintended effects.)
@@ -259,7 +261,7 @@ Methods and properties added in categories MUST be named with an app- or organiz
 
 ```objc
 @interface NSArray (NYTAccessors)
-- (id)nyt_objectOrNilAtIndex:(NSUInteger)index;
+- (id)adc_objectOrNilAtIndex:(NSUInteger)index;
 @end
 ```
 
