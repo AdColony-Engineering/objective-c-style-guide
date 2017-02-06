@@ -66,8 +66,7 @@ UIApplication.sharedApplication.delegate;
 ```objc
 if (user.isHappy) {
     // Do something
-}
-else {
+} else {
     // Do something else
 }
 ```
@@ -93,8 +92,9 @@ if (!error)
     return success;
 ```
 
-or
+Do not use single line conditionals, even for simple returns.
 
+**Not:**
 ```objc
 if (!error) return success;
 ```
